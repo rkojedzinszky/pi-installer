@@ -1,0 +1,16 @@
+#!/bin/sh
+
+version="$1"
+
+KERNEL=vmlinuz-$version
+INITRD=initrd.img-$version
+UINITRD=u$INITRD
+
+mkimage -A arm -T ramdisk -C none -d /boot/$INITRD /boot/$UINITRD
+
+# symlink kernel & uinitrd
+ln -sf $KERNEL /boot/vmlinuz
+ln -sf $UINITRD /boot/uinitrd.img
+
+# symlink dtb
+ln -sf ../usr/lib/linux-image-$version /boot/dtb
