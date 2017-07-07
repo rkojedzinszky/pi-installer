@@ -22,7 +22,7 @@ export LC_ALL=C LANGUAGE=C LANG=C
 export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
-cd "$(dirname "$0")"
+cd "$(dirname "$(readlink "$0")")"
 
 help()
 {
